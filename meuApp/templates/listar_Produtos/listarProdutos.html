@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <div class="content">
+
+    <input type="checkbox" id="menu-toggle">
+    
+    <div class="menu">
+      <a href="{% url 'home' %}"><img src="../../static/imagens/icons8-casa-inteligente-2-64.png" alt=""> Página Inicial</a>
+      <a href="{% url 'cadProduto' %}" name="cadProduto"><img src="../../static/imagens/icons8-produto-64.png" alt=""> Cadastrar Produto</a>
+      <a href="{% url 'cadFardo' %}" name="cadFardo"><img src="../../static/imagens/icons8-mover-por-carrinho-64.png" alt=""> Cadastrar Fardo</a>
+      <a href="{% url 'listarProd' %}"><img src="../../static/imagens/icons8-lista-de-peças-64.png" alt=""> Listar Produtos</a>
+      <a href="{% url 'listarFard' %}"><img src="../../static/imagens/icons8-lista-2-64.png" alt=""> Listar Fardos</a>
+    </div>       
+        <label for="menu-toggle">&#9776; Menu</label>
+        <h1>Lista de Produtos</h1>
+        <p>Segue a lista de produtos cadastrados.</p>
+        <form action="{% url 'listarProdutos' %}" id="listarProdutos" method="post">
+        {% csrf_token %}
+        <div id="listaProd" class="listaProd">
+          <div class="search-container">
+            <select id="tipo-pesquisa" name="tipo-pesquisa" required>
+                <option value="" disabled selected hidden>Selecione uma opção</option>
+                <option value="id">ID</option>
+                <option value="Descricao">Descrição</option>
+                <option value="marca">Marca</option>
+                <option value="tipo">Tipo</option>
+                <option value="preco">Preço</option>
+            </select>
+            <br>
+            <br>
+            <input type="text" class="search-box" name="campo-pesquisa" placeholder="Pesquisar por...">
+            <button class="search-button" name="pesquisar" type="submit">Pesquisar</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for produto in produtos %}
+              <tr>
+                <td>{{produto.id}}</td>
+                <td>{{produto.descricao}}</td>
+                <td>{{produto.marca}}</td>
+                <td>{{produto.tipo}}</td>
+                <td>R${{produto.preco}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

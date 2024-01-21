@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.menu {
+    height: 100vh;
+    width: 200px;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    transition: left 0.3s ease-in-out;
+    padding-top: 20px;
+}
+
+.menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-bottom: 1px solid #555;
+    transition: background-color 0.3s;
+}
+
+.menu a:hover {
+    background-color: #555;
+}
+
+.content {
+    margin-left: 200px;
+    transition: margin-left 0.3s ease-in-out;
+    padding: 20px;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked + .menu {
+    left: 0;
+}
+
+input[type="checkbox"]:checked + .content {
+    margin-left: 0;
+}
+
+img{
+    height: 30px;
+}
+
+div.flash_alerta{
+        background-color: #333;
+        font-size: 20px;
+        border-radius: 30px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        padding: 0.6%;
+        width: fit-content;
+        margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .search-container {
+    text-align: left;
+  }
+
+  .search-box {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  .search-button {
+    padding: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #tipo-pesquisa{
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }

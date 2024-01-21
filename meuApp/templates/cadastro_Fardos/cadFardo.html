@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <div class="content">
+    <input type="checkbox" id="menu-toggle">
+    
+    <div class="menu">
+        <a href="{% url 'home' %}"><img src="../../static/imagens/icons8-casa-inteligente-2-64.png" alt=""> Página Inicial</a>
+        <a href="{% url 'cadProduto' %}" name="cadProduto"><img src="../../static/imagens/icons8-produto-64.png" alt=""> Cadastrar Produto</a>
+        <a href="{% url 'cadFardo' %}" name="cadFardo"><img src="../../static/imagens/icons8-mover-por-carrinho-64.png" alt=""> Cadastrar Fardo</a>
+        <a href="{% url 'listarProd' %}"><img src="../../static/imagens/icons8-lista-de-peças-64.png" alt=""> Listar Produtos</a>
+        <a href="{% url 'listarFard' %}"><img src="../../static/imagens/icons8-lista-2-64.png" alt=""> Listar Fardos</a>
+    </div>       
+        <label for="menu-toggle">&#9776; Menu</label>
+        <h1>Cadastro de Fardos</h1>
+        <p>Preencha as informações a seguir.</p>
+        <br>
+        <form action="{% url 'cadastroFardos' %}" id="cadastroFardos" method="post">
+            {% csrf_token %}
+            <label for="codProduto">Código do Produto:</label>
+            <input type="number" name="codProduto" id="codProduto" required placeholder="Código do Produto">
+            <br>
+            <br>
+            <label for="quant">Quantidade: </label>
+            <input type="number" name="quant" id="quant" required placeholder="Quantidade do Fardo">
+            <br>
+            <br>
+            <label for="dataFab">Data de Fabricação:</label>
+            <input type="date" name="dataFab" id="dataFab" required>
+            <br>
+            <br>
+            <label for="dataVal">Data de Validade:</label>
+            <input type="date" name="dataVal" id="dataVal" required>
+            <br>
+            <br>
+            <button type="submit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>Cadastrar Fardo
+            </button>
+        </form>
+    </div>
+</body>
+</html>
