@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/style.css">
-</head>
-<body>
-    {% csrf_token %}
-    <input type="checkbox" id="menu-toggle">
-    
-    <div class="menu">
-        <a href="{% url 'home' %}"><img src="../../static/imagens/icons8-casa-inteligente-2-64.png" alt=""> Página Inicial</a>
-        <a href="{% url 'cadProduto' %}" name="cadProduto"><img src="../../static/imagens/icons8-produto-64.png" alt=""> Cadastrar Produto</a>
-        <a href="{% url 'cadFardo' %}" name="cadFardo"><img src="../../static/imagens/icons8-mover-por-carrinho-64.png" alt=""> Cadastrar Fardo</a>
-        <a href="{% url 'listarProd' %}"><img src="../../static/imagens/icons8-lista-de-peças-64.png" alt=""> Listar Produtos</a>
-        <a href="{% url 'listarFard' %}"><img src="../../static/imagens/icons8-lista-2-64.png" alt=""> Listar Fardos</a>
-    </div>
-
-    <div class="content">
-        <label for="menu-toggle">&#9776; Menu</label>
-        <h1>SafeShelf</h1>
-        <p>Resumo do sistema</p>
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}SafeShelf{% endblock %}
+{% block content %}
+<h1>SafeShelf</h1>
+<p>Resumo do sistema</p>
+{% endblock %}

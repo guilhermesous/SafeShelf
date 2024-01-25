@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from .models import Produto, Estoque
 from datetime import datetime
 btn_pesquisa = False
@@ -7,34 +9,6 @@ campo = ''
 
 def home(request):
     return render(request, 'home/home.html')
-
-def cadProduto(request):
-    return render(request, 'cadastro_Produtos/cadProduto.html')
-
-def cadastroProdutos(request):
-    novoProduto = Produto()
-    novoProduto.descricao = request.POST.get('desc')
-    novoProduto.marca = request.POST.get('marca')
-    novoProduto.tipo = request.POST.get('tipo')
-    novoProduto.preco = request.POST.get('preco')
-    novoProduto.save()
-    return redirect('/cadProduto')
-
-def cadFardo(request):
-    return render(request, 'cadastro_Fardos/cadFardo.html')
-
-def cadastroFardos(request):
-    novoFardo = Estoque()
-
-    codProduto = int(request.POST.get('codProduto'))
-    produto = Produto.objects.get(id=codProduto)
-
-    novoFardo.codProduto = produto
-    novoFardo.quantidade = request.POST.get('quant')
-    novoFardo.dataFabricacao = request.POST.get('dataFab')
-    novoFardo.dataValidade = request.POST.get('dataVal')
-    novoFardo.save()
-    return redirect('/cadFardo')
 
 def listarProd(request):
     global btn_pesquisa
@@ -94,4 +68,37 @@ def listarFardos(request):
             else:
                 pass
     return redirect('/listarFard')
-    
+
+class ProdutoCreate(CreateView):
+    model = Produto
+    fields = ['descricao', 'marca', 'tipo', 'preco']
+    template_name = "cadastros/CadastrarProduto.html"
+    success_url = reverse_lazy('ProdutoCreate')
+
+class ProdutoUpdate(UpdateView):
+    model = Produto
+    fields = ['descricao', 'marca', 'tipo', 'preco']
+    template_name = "editar/produto.html"
+    success_url = reverse_lazy('listarProdutos')
+
+class ProdutoDelete(DeleteView):
+    model = Produto
+    template_name = "excluir/excluir.html"
+    success_url = reverse_lazy('listarProdutos')
+
+class EstoqueCreate(CreateView):
+    model = Estoque
+    fields = ['codProduto', 'quantidade', 'dataFabricacao', 'dataValidade']
+    template_name = "cadastros/CadastrarEstoque.html"
+    success_url = reverse_lazy('EstoqueCreate')
+
+class EstoqueUpdate(UpdateView):
+    model = Estoque
+    fields = ['codProduto', 'quantidade']
+    template_name = "editar/estoque.html"
+    success_url = reverse_lazy('listarFardos')
+
+class EstoqueDelete(DeleteView):
+    model = Estoque
+    template_name = "excluir/excluir.html"
+    success_url = reverse_lazy('listarFardos')

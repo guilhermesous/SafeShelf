@@ -11,9 +11,9 @@ class Produto(models.Model):
         (OPCAO_3, 'Limpeza'),
     ]
 
-    descricao = models.TextField(max_length=200)
+    descricao = models.TextField(max_length=255)
     tipo = models.CharField(max_length=20, choices=OPCOES_ENUM)
-    marca = models.TextField(max_length=200)
+    marca = models.TextField(max_length=255)
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     def __str__(self):
         return self.descricao

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Excluir{% endblock %}
+{% block content %}
+<h1>Excluir</h1>
+<hr>
+<form action="" method="post">
+    <p>Deseja excluir permanentemente: {{ object}}?</p>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Excluir</button>
+</form>
+{% endblock %}
