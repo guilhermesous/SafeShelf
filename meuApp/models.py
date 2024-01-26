@@ -1,4 +1,5 @@
-from django.db import models, connection
+from django.db import models
+from django.contrib.auth.models import User
 
 class Produto(models.Model):
     OPCAO_1 = 'Medicamento'
@@ -15,6 +16,7 @@ class Produto(models.Model):
     tipo = models.CharField(max_length=20, choices=OPCOES_ENUM)
     marca = models.TextField(max_length=255)
     preco = models.DecimalField(max_digits=8, decimal_places=2)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.descricao
 
@@ -23,5 +25,6 @@ class Estoque(models.Model):
     quantidade = models.IntegerField()
     dataFabricacao = models.DateField()
     dataValidade = models.DateField()
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE) 
     def __str__(self):
         return f"Fardo de {self.codProduto.descricao} ({self.dataValidade})"

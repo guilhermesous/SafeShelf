@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/meuApp/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="shortcut icon" href="../static/meuApp/imagens/safeshelf-favicon.png" type="image/x-icon">
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.css" rel="stylesheet">
 </head>
 <body>
     {% csrf_token %}
@@ -19,11 +20,15 @@
             <h2>SafeShelf</h2>
             <hr>
         </div>
-        <a href="{% url 'home' %}"><img class='menu_lateral' src="../../static/imagens/icons8-casa-inteligente-2-64.png" alt=""> Página Inicial</a>
-        <a href="/CadastrarProduto/" name="cadProduto"><img class='menu_lateral' src="../../static/imagens/icons8-produto-64.png" alt=""> Cadastrar Produto</a>
-        <a href="/CadastrarEstoque/" name="cadFardo"><img class='menu_lateral' src="../../static/imagens/icons8-mover-por-carrinho-64.png" alt=""> Cadastrar Fardo</a>
-        <a href="{% url 'listarProd' %}"><img class='menu_lateral' src="../../static/imagens/icons8-lista-de-peças-64.png" alt=""> Listar Produtos</a>
-        <a href="{% url 'listarFard' %}"><img class='menu_lateral' src="../../static/imagens/icons8-lista-2-64.png" alt=""> Listar Fardos</a>
+        <a href="/home/"><img class='menu_lateral' src="../../static/meuApp/imagens/icons8-casa-inteligente-2-64.png" alt=""> Página Inicial</a>
+        <a href="/CadastrarProduto/" name="cadProduto"><img class='menu_lateral' src="../../static/meuApp/imagens/icons8-produto-64.png" alt=""> Cadastrar Produto</a>
+        <a href="/CadastrarEstoque/" name="cadFardo"><img class='menu_lateral' src="../../static/meuApp/imagens/icons8-mover-por-carrinho-64.png" alt=""> Cadastrar Fardo</a>
+        <a href="/ListarProdutos/"><img class='menu_lateral' src="../../static/meuApp/imagens/icons8-lista-de-peças-64.png" alt=""> Listar Produtos</a>
+        <a href="/ListarEstoque/"><img class='menu_lateral' src="../../static/meuApp/imagens/icons8-lista-2-64.png" alt=""> Listar Fardos</a>
+        <form action="/logout/" method="POST">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
     </div>
 
     <div class="content">
@@ -31,5 +36,8 @@
         {% block content %}
         {% endblock %}
     </div>
+    {% block scripts %}
+
+    {% endblock %}
 </body>
 </html>

@@ -1,104 +1,112 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic.list import ListView
 from .models import Produto, Estoque
 from datetime import datetime
-btn_pesquisa = False
-tipo = ''
-campo = ''
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-def home(request):
-    return render(request, 'home/home.html')
+class HomeView(LoginRequiredMixin, TemplateView):
+    login_url = reverse_lazy('login')
+    template_name = 'home/home.html'
 
-def listarProd(request):
-    global btn_pesquisa
-    global tipo
-    global campo
-    produtos = {'produtos':Produto.objects.all()}
-    if btn_pesquisa == True:
-        pesquisa = Produto.objects.raw(f"SELECT * FROM meuapp_produto WHERE {tipo} LIKE %s;", [f'{campo}%'])
-        resultados = [{'id':f.id, 'descricao':f.descricao, 'marca':f.marca, 'tipo':f.tipo, 'preco':f.preco} for f in pesquisa]
-        produtos = {'produtos': resultados}
-    else:
-        produtos = {'produtos':Produto.objects.all()}
-    btn_pesquisa = False
-    campo = ''
-    tipo = ''
-    return render(request, 'listar_Produtos/listarProdutos.html', produtos)
+class ProdutoCreate(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('login')
+    model = Produto
+    fields = ['descricao', 'marca', 'tipo', 'preco']
+    template_name = "cadastros/CadastrarProduto.html"
+    success_url = reverse_lazy('ProdutoCreate')
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
 
-def listarProdutos(request):
-    global btn_pesquisa
-    global tipo
-    global campo
-    if request.method == 'POST':
-        if 'pesquisar' in request.POST:
-            tipo = request.POST.get('tipo-pesquisa')
-            campo = request.POST.get('campo-pesquisa')
-            btn_pesquisa = True
-    return redirect('/listarProd')
+class ProdutoList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = Produto
+    template_name = 'listar/produto.html'
+    paginate_by = 10
+    def get_queryset(self):
+        if 'tipo_pesquisa' in self.request.GET and 'campo_pesquisa' in self.request.GET:
+            tipo = self.request.GET.get('tipo_pesquisa')
+            campo = self.request.GET.get('campo_pesquisa')
+            produtos = Produto.objects.filter(usuario=self.request.user, **{f"{tipo}__icontains": campo})
+        else:
+            produtos = Produto.objects.filter(usuario=self.request.user)
 
-def listarFard(request):
-    global btn_pesquisa
-    global tipo
-    global campo
-    pesquisa = Estoque.objects.raw("SELECT id, codProduto_id, quantidade, DATE_FORMAT(dataFabricacao, '%%d/%%m/%%Y') AS dataFabricacao, DATE_FORMAT(dataValidade, '%%d/%%m/%%Y') AS dataValidade FROM meuapp_estoque")
-    resultados = [{'id': f.id, 'codProduto': f.codProduto_id, 'quantidade': f.quantidade, 'dataFabricacao': f.dataFabricacao, 'dataValidade': f.dataValidade} for f in pesquisa]
-    fardos = {'fardos': resultados}
-    if btn_pesquisa == True:
-        pesquisa = Estoque.objects.raw(f"SELECT id, codProduto_id, quantidade, DATE_FORMAT(dataFabricacao, '%%d/%%m/%%Y') AS dataFabricacao, DATE_FORMAT(dataValidade, '%%d/%%m/%%Y') AS dataValidade FROM meuapp_estoque WHERE {tipo} LIKE %s;", [f'{campo}%'])
-        resultados = [{'id': f.id, 'codProduto': f.codProduto_id, 'quantidade': f.quantidade, 'dataFabricacao': f.dataFabricacao, 'dataValidade': f.dataValidade} for f in pesquisa]
-        fardos = {'fardos': resultados}
-    return render(request, 'listar_Fardos/listarFardos.html', fardos)
+        return produtos
 
-def listarFardos(request):
-    global btn_pesquisa
-    global tipo
-    global campo
-    if request.method == 'POST':
-        if 'pesquisar' in request.POST:
-            btn_pesquisa = True
-            tipo = request.POST.get('tipo-pesquisa')
-            campo = request.POST.get('campo-pesquisa')
+class ProdutoUpdate(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
+    model = Produto
+    fields = ['descricao', 'marca', 'tipo', 'preco']
+    template_name = "editar/produto.html"
+    success_url = reverse_lazy('ProdutoList')
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Produto, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
+
+class ProdutoDelete(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('login')
+    model = Produto
+    template_name = "excluir/excluir.html"
+    success_url = reverse_lazy('ProdutoList')
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Produto, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
+
+class EstoqueCreate(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('login')
+    model = Estoque
+    fields = ['codProduto', 'quantidade', 'dataFabricacao', 'dataValidade']
+    template_name = "cadastros/CadastrarEstoque.html"
+    success_url = reverse_lazy('EstoqueCreate')
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
+
+class EstoqueList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = Estoque
+    template_name = 'listar/estoque.html'
+    paginate_by = 20
+    def get_queryset(self):
+        if 'tipo_pesquisa' in self.request.GET and 'campo_pesquisa' in self.request.GET:
+            tipo = self.request.GET.get('tipo_pesquisa')
+            campo = self.request.GET.get('campo_pesquisa')
             if tipo == 'dataFabricacao' or 'dataValidade':
                 try:
                     data_datetime = datetime.strptime(campo, "%d/%m/%Y")
                     campo = data_datetime.strftime("%Y-%m-%d")
                 except ValueError:
                     pass
+            elif tipo == 'codProduto':
+                sql = "SELECT "
+                pass
             else:
                 pass
-    return redirect('/listarFard')
+            fardos = Estoque.objects.filter(usuario=self.request.user, **{f"{tipo}__icontains": campo})
+        else:
+            fardos = Estoque.objects.filter(usuario=self.request.user)
+        return fardos
 
-class ProdutoCreate(CreateView):
-    model = Produto
-    fields = ['descricao', 'marca', 'tipo', 'preco']
-    template_name = "cadastros/CadastrarProduto.html"
-    success_url = reverse_lazy('ProdutoCreate')
-
-class ProdutoUpdate(UpdateView):
-    model = Produto
-    fields = ['descricao', 'marca', 'tipo', 'preco']
-    template_name = "editar/produto.html"
-    success_url = reverse_lazy('listarProdutos')
-
-class ProdutoDelete(DeleteView):
-    model = Produto
-    template_name = "excluir/excluir.html"
-    success_url = reverse_lazy('listarProdutos')
-
-class EstoqueCreate(CreateView):
-    model = Estoque
-    fields = ['codProduto', 'quantidade', 'dataFabricacao', 'dataValidade']
-    template_name = "cadastros/CadastrarEstoque.html"
-    success_url = reverse_lazy('EstoqueCreate')
-
-class EstoqueUpdate(UpdateView):
+class EstoqueUpdate(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
     model = Estoque
     fields = ['codProduto', 'quantidade']
     template_name = "editar/estoque.html"
-    success_url = reverse_lazy('listarFardos')
+    success_url = reverse_lazy('EstoqueList')
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Estoque, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
 
-class EstoqueDelete(DeleteView):
+class EstoqueDelete(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('login')
     model = Estoque
     template_name = "excluir/excluir.html"
-    success_url = reverse_lazy('listarFardos')
+    success_url = reverse_lazy('EstoqueList')
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Estoque, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
