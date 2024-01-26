@@ -82,9 +82,6 @@ class EstoqueList(LoginRequiredMixin, ListView):
                     campo = data_datetime.strftime("%Y-%m-%d")
                 except ValueError:
                     pass
-            elif tipo == 'codProduto':
-                sql = "SELECT "
-                pass
             else:
                 pass
             fardos = Estoque.objects.filter(usuario=self.request.user, **{f"{tipo}__icontains": campo})
