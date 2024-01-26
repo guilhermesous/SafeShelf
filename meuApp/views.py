@@ -55,6 +55,10 @@ class EstoqueCreate(LoginRequiredMixin, CreateView):
     fields = ['codProduto', 'quantidade', 'dataFabricacao', 'dataValidade']
     template_name = "cadastros/CadastrarEstoque.html"
     success_url = reverse_lazy('EstoqueCreate')
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['codProduto'].queryset = form.fields['codProduto'].queryset.filter(usuario=self.request.user)
+        return form
     def form_valid(self, form):
         form.instance.usuario = self.request.user
         url = super().form_valid(form)
@@ -77,6 +81,10 @@ class EstoqueUpdate(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Estoque, pk=self.kwargs['pk'], usuario=self.request.user)
         return self.object
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['codProduto'].queryset = form.fields['codProduto'].queryset.filter(usuario=self.request.user)
+        return form
 
 class EstoqueDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
