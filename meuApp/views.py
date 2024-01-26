@@ -26,16 +26,9 @@ class ProdutoList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = Produto
     template_name = 'listar/produto.html'
-    paginate_by = 10
     def get_queryset(self):
-        if 'tipo_pesquisa' in self.request.GET and 'campo_pesquisa' in self.request.GET:
-            tipo = self.request.GET.get('tipo_pesquisa')
-            campo = self.request.GET.get('campo_pesquisa')
-            produtos = Produto.objects.filter(usuario=self.request.user, **{f"{tipo}__icontains": campo})
-        else:
-            produtos = Produto.objects.filter(usuario=self.request.user)
-
-        return produtos
+        self.object_list = Produto.objects.filter(usuario=self.request.user)
+        return self.object_list
 
 class ProdutoUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
@@ -71,23 +64,9 @@ class EstoqueList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = Estoque
     template_name = 'listar/estoque.html'
-    paginate_by = 20
     def get_queryset(self):
-        if 'tipo_pesquisa' in self.request.GET and 'campo_pesquisa' in self.request.GET:
-            tipo = self.request.GET.get('tipo_pesquisa')
-            campo = self.request.GET.get('campo_pesquisa')
-            if tipo == 'dataFabricacao' or 'dataValidade':
-                try:
-                    data_datetime = datetime.strptime(campo, "%d/%m/%Y")
-                    campo = data_datetime.strftime("%Y-%m-%d")
-                except ValueError:
-                    pass
-            else:
-                pass
-            fardos = Estoque.objects.filter(usuario=self.request.user, **{f"{tipo}__icontains": campo})
-        else:
-            fardos = Estoque.objects.filter(usuario=self.request.user)
-        return fardos
+        self.object_list = Estoque.objects.filter(usuario=self.request.user)
+        return self.object_list
 
 class EstoqueUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
