@@ -15,7 +15,7 @@ body {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-color: #555;
+    background-color: #161927;
 }
 
 .formLogin {
@@ -80,7 +80,7 @@ body {
 }
 
 .btn {
-    background-color: #525252;
+    background-color: #919191;
     color: #fff;
     height: 50px;
     font-size: 14px;

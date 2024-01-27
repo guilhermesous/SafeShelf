@@ -2,6 +2,10 @@
 {% block title %}SafeShelf{% endblock %}
 {% block content %}
 <h1>SafeShelf</h1>
-<p>Resumo do sistema</p>
+{% if user.perfil.nomeCompleto %}
+<p>Bem-Vindo ao SafeShelf {{ user.perfil.nomeCompleto }}</p>
+{% else %}
+<p>Há dados restantes para preecnher, acesse <a href="/MeusDadosPessoais/">Minha Conta</a> para completar seu cadastro.</p>
+{% endif %}
 <hr>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base2.html' %}
+{% block title %}Redefinir Senha{% endblock %}
+{% block content %}
+<form action="/enviarEmail/" method="POST" class="formLogin">
+    {% csrf_token %}
+            <h1>Redefinir Senha</h1>
+            <p>Digite seu email cadastrado para redefinir sua senha.</p>
+            <label>Email</label>
+            <input type="email" name="emailsenha">
+            <button type="submit" class="btn">Enviar</button>
+</form>
+{% endblock %}

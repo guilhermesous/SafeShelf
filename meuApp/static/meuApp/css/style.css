@@ -60,6 +60,11 @@ input[type="checkbox"]:checked + .content {
   width: 150px;
 }
 
+.logout{
+  text-align: center;
+  margin: auto;
+}
+
 /*Mensagens*/
 div.flash_alerta{
         background-color: #333;

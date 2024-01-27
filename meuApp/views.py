@@ -1,11 +1,15 @@
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 from .models import Produto, Estoque
-from datetime import datetime
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from usuarios.models import Perfil
+from usuarios.forms import UsuarioForm
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 
 class HomeView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('login')
@@ -94,3 +98,19 @@ class EstoqueDelete(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Estoque, pk=self.kwargs['pk'], usuario=self.request.user)
         return self.object
+    
+class PerfilUpdate(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
+    template_name = "perfil/perfil.html"
+    model = Perfil
+    fields = ["nomeCompleto", "telefone"]
+    success_url = reverse_lazy("PerfilUpdate")
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Perfil, usuario=self.request.user)
+        return self.object
+    
+class AlteraSenha(LoginRequiredMixin, PasswordChangeView):
+    login_url = reverse_lazy('login')
+    form_class = PasswordChangeForm
+    template_name = "perfil/senha.html"
+    success_url = reverse_lazy('alteraSenha')
