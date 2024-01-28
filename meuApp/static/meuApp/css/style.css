@@ -130,3 +130,49 @@ table {
     box-sizing: border-box;
     font-size: 16px;
   }
+
+/*Botões do Excel*/
+
+.inputexcel{
+  display: none;
+}
+
+.txtexcel{
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+#upload{
+  background-color: #02723B;
+  color: #F6F8F7;
+}
+
+#upload:hover{
+  background-color: #02582f;
+}
+
+#download{
+  text-decoration: none;
+  color: #02723B;
+  border: 2px solid #02723B;
+  padding: 10px 10px 13px 10px;
+}
+
+#download:hover{
+  background-color: #d1d1d1
+}
+
+.txtexcel:hover{
+  cursor: pointer;
+}
+
+.imgexcel{
+  width: 25px;
+  padding-bottom: 3px;
+}
+
+/*Direitos*/
+.direitos{
+  font-size: 10px;
+}

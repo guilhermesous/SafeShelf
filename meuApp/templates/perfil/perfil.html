@@ -11,3 +11,21 @@
     {{ form.as_p }}
     <button type="submit">Salvar Alterações</button>
 {% endblock %}
+{% block scripts %}
+<script src="../../static/meuApp/js/jquery.mask.js"></script>
+
+<script>
+    $(document).ready(function(){
+        var SPMaskBehavior = function (val) {
+  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+spOptions = {
+  onKeyPress: function(val, e, field, options) {
+      field.mask(SPMaskBehavior.apply({}, arguments), options);
+    }
+};
+
+$('#id_telefone').mask(SPMaskBehavior, spOptions);
+    })
+</script>
+{% endblock %}

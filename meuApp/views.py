@@ -1,15 +1,15 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
+import pandas as pd
+from meuApp.forms import EstoqueFormCreate, ProdutoForm, EstoqueFormUpdate
 from .models import Produto, Estoque
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from usuarios.models import Perfil
-from usuarios.forms import UsuarioForm
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
+from django.contrib.auth.decorators import login_required
 
 class HomeView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('login')
@@ -18,7 +18,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 class ProdutoCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Produto
-    fields = ['descricao', 'marca', 'tipo', 'preco']
+    form_class = ProdutoForm
     template_name = "cadastros/CadastrarProduto.html"
     success_url = reverse_lazy('ProdutoCreate')
     def form_valid(self, form):
@@ -37,7 +37,7 @@ class ProdutoList(LoginRequiredMixin, ListView):
 class ProdutoUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     model = Produto
-    fields = ['descricao', 'marca', 'tipo', 'preco']
+    form_class = ProdutoForm
     template_name = "editar/produto.html"
     success_url = reverse_lazy('ProdutoList')
     def get_object(self, queryset=None):
@@ -56,7 +56,7 @@ class ProdutoDelete(LoginRequiredMixin, DeleteView):
 class EstoqueCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Estoque
-    fields = ['codProduto', 'quantidade', 'dataFabricacao', 'dataValidade']
+    form_class = EstoqueFormCreate
     template_name = "cadastros/CadastrarEstoque.html"
     success_url = reverse_lazy('EstoqueCreate')
     def get_form(self, form_class=None):
@@ -79,7 +79,7 @@ class EstoqueList(LoginRequiredMixin, ListView):
 class EstoqueUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     model = Estoque
-    fields = ['codProduto', 'quantidade']
+    form_class = EstoqueFormUpdate
     template_name = "editar/estoque.html"
     success_url = reverse_lazy('EstoqueList')
     def get_object(self, queryset=None):
@@ -114,3 +114,44 @@ class AlteraSenha(LoginRequiredMixin, PasswordChangeView):
     form_class = PasswordChangeForm
     template_name = "perfil/senha.html"
     success_url = reverse_lazy('alteraSenha')
+
+@login_required
+def UploadExcelProdutos(request):
+    if request.method == 'POST':
+        arquivo = request.FILES.get('inputexcel')
+        try:
+            df = pd.read_excel(arquivo)
+            for index, row in df.iterrows():
+                Produto.objects.create(
+                    descricao=row['Descrição'],
+                    tipo=row['Tipo'],
+                    marca=row['Marca'],
+                    preco=row['Preço'],
+                    usuario=request.user
+                )
+            return redirect('/ListarProdutos')
+        except Exception as e:
+            return redirect('/ListarProdutos')
+    else:
+        return redirect('/ListarProdutos')
+    
+@login_required
+def UploadExcelEstoque(request):
+    if request.method == 'POST':
+        arquivo = request.FILES.get('inputexcel')
+        try:
+            df = pd.read_excel(arquivo)
+            for index, row in df.iterrows():
+                codProduto=get_object_or_404(Produto, id=row['Código do Produto'])
+                Estoque.objects.create(
+                    codProduto=codProduto,
+                    quantidade=row['Quantidade'],
+                    dataFabricacao=row['Data de Fabricação'],
+                    dataValidade=row['Data de Validade'],
+                    usuario=request.user
+                )
+            return redirect('/ListarProdutos')
+        except Exception as e:
+            return redirect('/ListarProdutos')
+    else:
+        return redirect('/ListarProdutos')

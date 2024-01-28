@@ -4,6 +4,19 @@
 <h1>Lista de Fardos</h1>
 <p>Segue a lista de fardos registrados.</p>
 <hr>
+
+<form action="/uploadExcelEstoque/" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div>
+    <a class="txtexcel" id="download" href="../../static/meuApp/planilhas/Planilha Modelo Estoque.xlsx">Download Modelo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-arquivo-estatístico-32.png" alt=""></a>
+    <label class="txtexcel" id="upload" for="arquivoexcel">Upload Arquivo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-ms-excel-32.png" alt=""></label>
+    <input class="inputexcel" type="file" name="inputexcel" id="arquivoexcel">
+    <button class="btnexcel" type="submit">Enviar</button>
+  </div>
+</form>
+
+<br>
+
 <table id="tabelaEstoque">
       <thead>
         <tr>
@@ -43,12 +56,12 @@
           "language": {
               "decimal": "",
               "emptyTable": "Sem dados disponíveis",
-              "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-              "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
-              "infoFiltered": "(filtrado de _MAX_ registos no total)",
+              "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+              "infoEmpty": "Mostrando de 0 até 0 de 0 registros",
+              "infoFiltered": "(filtrado de _MAX_ registros no total)",
               "infoPostFix": "",
               "thousands": ",",
-              "lengthMenu": "Mostrar _MENU_ registos",
+              "lengthMenu": "Mostrar _MENU_ registros",
               "loadingRecords": "A carregar dados...",
               "processing": "A processar...",
               "search": "Procurar:",

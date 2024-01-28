@@ -23,21 +23,17 @@ def redefinirSenha(request):
     return render(request, 'login/email.html')
 
 def enviarEmail(request):
-    render(request, 'login/email.html')
     email = request.POST.get('emailsenha')
 
     senha_padrao = 'SAFEshelf@#789'
     subject = 'SafeShelf: Redefinição de Senha'
     message = f'Olá. Sua Senha foi redefinida para {senha_padrao}. Para alterar esta senha basta logar e ir em: Minha Conta -> Alterar Senha'
-    from_email = 'guilherme.sousathe@gmail.com'
+    from_email = 'safeshelf.bot@gmail.com'
     recipient_list = [f'{email}']
     send_mail(subject, message, from_email, recipient_list)
 
-    try:
+    if User.objects.filter(email = email).exists():
         usuario = User.objects.get(email=email)
         usuario.set_password(senha_padrao)
         usuario.save()
-    except ValueError:
-        raise ValidationError(f"O email {email} não está cadastrado.")
-
     return redirect('/redefinirSenha')
