@@ -8,7 +8,7 @@
 <form action="/uploadExcelEstoque/" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div>
-    <a class="txtexcel" id="download" href="../../static/meuApp/planilhas/Planilha Modelo Estoque.xlsx">Download Modelo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-arquivo-estatístico-32.png" alt=""></a>
+    <a class="txtexcel" id="download" href="/downloadExcelEstoque/">Download Modelo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-arquivo-estatístico-32.png" alt=""></a>
     <label class="txtexcel" id="upload" for="arquivoexcel">Upload Arquivo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-ms-excel-32.png" alt=""></label>
     <input class="inputexcel" type="file" name="inputexcel" id="arquivoexcel">
     <button class="btnexcel" type="submit">Enviar</button>

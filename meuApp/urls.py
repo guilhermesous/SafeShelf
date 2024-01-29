@@ -1,11 +1,14 @@
 from django.urls import path
-from .views import HomeView, ProdutoUpdate, ProdutoCreate, ProdutoDelete, EstoqueCreate, EstoqueUpdate, EstoqueDelete, ProdutoList, EstoqueList, PerfilUpdate, AlteraSenha, UploadExcelProdutos, UploadExcelEstoque
+from .views import HomeView, ProdutoUpdate, ProdutoCreate, ProdutoDelete, EstoqueCreate, EstoqueUpdate, EstoqueDelete, ProdutoList, EstoqueList, PerfilUpdate, AlteraSenha, UploadExcelProdutos, UploadExcelEstoque, DownloadExcelProduto, DownloadExcelEstoque
 
 urlpatterns = [
     path('home/', HomeView.as_view(), name='home'),
 
     path('uploadExcelProdutos/', UploadExcelProdutos, name="uploadExcelProdutos"),
     path('uploadExcelEstoque/', UploadExcelEstoque, name="uploadExcelEstoque"),
+
+    path('downloadExcelProdutos/', DownloadExcelProduto, name="downloadExcelProdutos"),
+    path('downloadExcelEstoque/', DownloadExcelEstoque, name="downloadExcelEDownloadExcelEstoque"),
 
     path('MeusDadosPessoais/', PerfilUpdate.as_view(), name="PerfilUpdate"),
     path('alteraSenha/', AlteraSenha.as_view(), name='alteraSenha'),

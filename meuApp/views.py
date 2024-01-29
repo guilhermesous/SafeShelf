@@ -9,6 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from usuarios.models import Perfil
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from openpyxl import Workbook
 
 class HomeView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
@@ -145,7 +147,7 @@ def UploadExcelEstoque(request):
         try:
             df = pd.read_excel(arquivo)
             for index, row in df.iterrows():
-                codProduto=get_object_or_404(Produto, id=row['Código do Produto'])
+                codProduto=get_object_or_404(Produto, id=row['Código do Produto'], usuario=request.user)
                 Estoque.objects.create(
                     codProduto=codProduto,
                     quantidade=row['Quantidade'],
@@ -153,8 +155,36 @@ def UploadExcelEstoque(request):
                     dataValidade=row['Data de Validade'],
                     usuario=request.user
                 )
-            return redirect('/ListarProdutos')
+            return redirect('/ListarEstoque')
         except Exception as e:
-            return redirect('/ListarProdutos')
+            return redirect('/ListarEstoque')
     else:
-        return redirect('/ListarProdutos')
+        return redirect('/ListarEstoque')
+    
+@login_required
+def DownloadExcelProduto(request):
+    produtos = Produto.objects.filter(usuario=request.user)
+    wb = Workbook()
+    ws = wb.active
+    ws.append(["Descrição", "Tipo", "Marca", "Preço"])
+    for produto in produtos:
+        ws.append([produto.descricao, produto.tipo, produto.marca, produto.preco])
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=produtos.xlsx'
+    wb.save(response)
+    return response
+
+@login_required
+def DownloadExcelEstoque(request):
+    estoques = Estoque.objects.filter(usuario=request.user)
+    wb = Workbook()
+    ws = wb.active
+    ws.append(["Código do Produto", "Quantidade", "Data de Fabricação", "Data de Validade"])
+    for estoque in estoques:
+        data_fabricacao = estoque.dataFabricacao.strftime('%d/%m/%Y') if estoque.dataFabricacao else ''
+        data_validade = estoque.dataValidade.strftime('%d/%m/%Y') if estoque.dataValidade else ''
+        ws.append([estoque.codProduto.id, estoque.quantidade, data_fabricacao, data_validade])
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=estoques.xlsx'
+    wb.save(response)
+    return response
