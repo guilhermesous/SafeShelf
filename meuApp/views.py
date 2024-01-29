@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 import pandas as pd
@@ -11,9 +10,13 @@ from usuarios.models import Perfil
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 
-class HomeView(LoginRequiredMixin, TemplateView):
+class HomeView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
+    model = Estoque
     template_name = 'home/home.html'
+    def get_queryset(self):
+        self.object_list = Estoque.objects.filter(usuario=self.request.user).order_by('dataValidade')
+        return self.object_list
 
 class ProdutoCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')

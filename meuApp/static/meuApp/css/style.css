@@ -1,178 +1,193 @@
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
 /*Menu Lateral*/
 .menu {
-    height: 100vh;
-    width: 200px;
-    background-color: #161927;
-    position: fixed;
-    top: 0;
-    left: -200px;
-    transition: left 0.3s ease-in-out;
-    padding-top: 20px;
+  height: 100vh;
+  width: 200px;
+  background-color: #161927;
+  position: fixed;
+  top: 0;
+  left: -200px;
+  transition: left 0.3s ease-in-out;
+  padding-top: 20px;
 }
 
 .menu a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    border-bottom: 1px solid #555;
-    transition: background-color 0.3s;
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  border-bottom: 1px solid #555;
+  transition: background-color 0.3s;
 }
 
 .menu a:hover {
-    background-color: #919191;
-    cursor: pointer;
+  background-color: #919191;
+  cursor: pointer;
 }
 
 .content {
-    margin-left: 200px;
-    transition: margin-left 0.3s ease-in-out;
-    padding: 20px;
+  margin-left: 200px;
+  transition: margin-left 0.3s ease-in-out;
+  padding: 20px;
 }
 
 input[type="checkbox"] {
-    display: none;
+  display: none;
 }
 
 input[type="checkbox"]:checked + .menu {
-    left: 0;
+  left: 0;
 }
 
 input[type="checkbox"]:checked + .content {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .menu_lateral{
-    height: 30px;
+  height: 30px;
 }
 
 .logo_menu{
-  text-align: center;
-  color: white;
+text-align: center;
+color: white;
 }
 
 .img_logo{
-  width: 150px;
+width: 150px;
 }
 
 .logout{
-  text-align: center;
-  margin: auto;
+text-align: center;
+margin: auto;
 }
 
 /*Mensagens*/
 div.flash_alerta{
-        background-color: #333;
-        font-size: 20px;
-        border-radius: 30px;
-        font-weight: bold;
-        text-align: center;
-        color: white;
-        padding: 0.6%;
-        width: fit-content;
-        margin: auto;
+      background-color: #333;
+      font-size: 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      padding: 0.6%;
+      width: fit-content;
+      margin: auto;
 }
 
 /*Tabelas das listas*/
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-  }
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
 
-  th, td {
-    border: 1px solid #b3b3b3;
-    padding: 8px;
-    text-align: left;
-  }
+th, td {
+  border: 1px solid #b3b3b3;
+  padding: 8px;
+  text-align: left;
+}
 
-  th {
-    background-color: #dadada;
-  }
+th {
+  background-color: #dadada;
+}
 
-  /*Campo de Pesquisa*/
-  .search-container {
-    text-align: left;
-  }
+#condicaovencido{
+  background: linear-gradient(to right,  white, #575757);
+  /*background-color: #575757;*/
+}
 
-  .acoes{
-    height: 15px;
-  }
+#condicaoproximo{
+  background: linear-gradient(to right, white, #690000);
+  /*background-color: #690000;*/
+}
 
-  .search-box {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
+#condicaobom{
+  background: linear-gradient(to right,  white, #02723B);
+  /*background-color: #02723B;*/
+}
 
-  .search-button {
-    padding: 10px;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  #tipo-pesquisa{
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
+/*Campo de Pesquisa*/
+.search-container {
+  text-align: left;
+}
+
+.acoes{
+  height: 15px;
+}
+
+.search-box {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 10px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#tipo-pesquisa{
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
 /*Botões do Excel*/
 
 .inputexcel{
-  display: none;
+display: none;
 }
 
 .txtexcel{
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: bold;
+padding: 10px;
+border-radius: 10px;
+font-weight: bold;
 }
 
 #upload{
-  background-color: #02723B;
-  color: #F6F8F7;
+background-color: #02723B;
+color: #F6F8F7;
 }
 
 #upload:hover{
-  background-color: #02582f;
+background-color: #02582f;
 }
 
 #download{
-  text-decoration: none;
-  color: #02723B;
-  border: 2px solid #02723B;
-  padding: 10px 10px 13px 10px;
+text-decoration: none;
+color: #02723B;
+border: 2px solid #02723B;
+padding: 9px 10px 14px 10px;
 }
 
 #download:hover{
-  background-color: #d1d1d1
+background-color: #d1d1d1
 }
 
 .txtexcel:hover{
-  cursor: pointer;
+cursor: pointer;
 }
 
 .imgexcel{
-  width: 25px;
-  padding-bottom: 3px;
+width: 25px;
+padding-bottom: 3px;
 }
 
 /*Direitos*/
 .direitos{
-  font-size: 10px;
+font-size: 10px;
 }

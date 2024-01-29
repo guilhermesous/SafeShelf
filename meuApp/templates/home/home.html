@@ -9,4 +9,80 @@
 {% endif %}
 <p class="direitos">Copyright © 2024. SafeShelf. Desenvolvido por Guilherme Santos.</p>
 <hr>
+
+<h4>Fardos mais próximos do vencimento</h4>
+<table id="tabelaEstoque">
+    <thead>
+      <tr>
+        <th>Cód. Fardo</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Data de Validade</th>
+        <th>Dias Restantes</th>
+        <th>Condição</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for estoque in object_list %}
+      <tr>
+        <td>{{estoque.id}}</td>
+        <td>{{estoque.codProduto}}</td>
+        <td>{{estoque.quantidade}}</td>
+        <td>{{estoque.dataValidade}}</td>
+        {% if estoque.dias_restantes >= 0 %}
+        <td>{{estoque.dias_restantes}} dias</td>
+        {% else %}
+        <td>VENCIDO</td>
+        {% endif %}
+        {% if estoque.dias_restantes <= 0 %}
+            <td id="condicaovencido">{{estoque.condicao}}</td>
+        {% elif estoque.dias_restantes > 7 %}
+            <td id="condicaobom">{{estoque.condicao}}</td>
+        {% else %}
+            <td id="condicaoproximo">{{estoque.condicao}}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block scripts %}
+<script>
+
+$(document).ready(function(){
+
+    $("#tabelaEstoque").DataTable({
+        responsive: true,
+        // "bSort": false,
+        "aaSorting": [],
+        "pageLength": 10,
+        "language": {
+            "decimal": "",
+            "emptyTable": "Sem dados disponíveis",
+            "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "infoEmpty": "Mostrando de 0 até 0 de 0 registros",
+            "infoFiltered": "(filtrado de _MAX_ registros no total)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "loadingRecords": "A carregar dados...",
+            "processing": "A processar...",
+            "search": "Procurar:",
+            "zeroRecords": "Não foram encontrados resultados",
+            "paginate": {
+                "first": "Primeiro",
+                "last": "Último",
+                "next": "Seguinte",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": ordem crescente",
+                "sortDescending": ": ordem decrescente"
+            }
+        }
+    });
+
+});
+
+</script>
 {% endblock %}

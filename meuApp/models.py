@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Produto(models.Model):
     OPCAO_1 = 'Medicamento'
@@ -28,3 +29,15 @@ class Estoque(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE) 
     def __str__(self):
         return f"Fardo de {self.codProduto.descricao} ({self.dataValidade})"
+    def dias_restantes(self):
+        dias_restantes = (self.dataValidade - timezone.now().date()).days
+        return dias_restantes
+    def condicao(self):
+        dias_restantes = self.dias_restantes()
+        if dias_restantes <= 0:
+            condicao = 'VENCIDO'
+        elif 0 <  dias_restantes <= 7:
+            condicao = 'PRÓXIMO DE VENCER'
+        else:
+            condicao = 'PROVEITOSO'
+        return condicao
