@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}SafeShelf{% endblock %}
 {% block content %}
+<style>
+    #imagem-container {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+  #texto:hover + #imagem-container,
+  #imagem-container:hover {
+    display: block;
+  }
+</style>
 <h1>SafeShelf</h1>
 {% if user.perfil.nomeCompleto %}
 <p>Bem-Vindo ao SafeShelf {{ user.perfil.nomeCompleto }}</p>
@@ -26,7 +42,12 @@
       {% for estoque in object_list %}
       <tr>
         <td>{{estoque.id}}</td>
-        <td>{{estoque.codProduto}}</td>
+        <td>
+            <label id="texto">{{estoque.codProduto}}</label>
+            {% if estoque.codProduto.imagem %}
+            <div id="imagem-container"><img height="300px" src="{{ estoque.codProduto.imagem.url }}" alt=""></div>
+            {% endif %}
+        </td>
         <td>{{estoque.quantidade}}</td>
         <td>{{estoque.dataValidade}}</td>
         {% if estoque.dias_restantes >= 0 %}

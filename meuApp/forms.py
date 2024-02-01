@@ -2,11 +2,12 @@ from django.utils import timezone
 from django import forms
 from .models import Estoque, Produto
 from django.core.exceptions import ValidationError
+from django.http import request
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['descricao', 'marca', 'tipo', 'preco']
+        fields = ['descricao', 'marca', 'tipo', 'preco', 'imagem']
     def clean_preco(self):
         preco = self.cleaned_data['preco']
         if preco <= 0:

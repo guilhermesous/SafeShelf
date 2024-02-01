@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Lista de Produtos{% endblock %}
 {% block content %}
-<h1>Lista de Produtos</h1>
+<style>
+  #imagem-container {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+#texto:hover + #imagem-container,
+#imagem-container:hover {
+  display: block;
+}
+</style>
+<h1 id="texto">Lista de Produtos</h1>
 <p>Segue a lista de produtos cadastrados.</p>
 <hr>
 
@@ -32,7 +48,12 @@
       {% for produto in object_list %}
       <tr>
         <td>{{produto.id}}</td>
-        <td>{{produto.descricao}}</td>
+        <td>
+          <label id="texto">{{produto.descricao}}</label>
+          {% if produto.imagem %}
+          <div id="imagem-container"><img height="300px" src="{{ produto.imagem.url }}" alt=""></div>
+          {% endif %}
+        </td>
         <td>{{produto.marca}}</td>
         <td>{{produto.tipo}}</td>
         <td>R${{produto.preco}}</td>

@@ -18,6 +18,7 @@ class Produto(models.Model):
     marca = models.TextField(max_length=255)
     preco = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Preço")
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagem = models.ImageField(upload_to='images/', blank=True, null=True, verbose_name="Imagem")
     def __str__(self):
         return self.descricao
 

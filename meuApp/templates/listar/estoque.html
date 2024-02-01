@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}Lista de Fardos{% endblock %}
 {% block content %}
+<style>
+  #imagem-container {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+#texto:hover + #imagem-container,
+#imagem-container:hover {
+  display: block;
+}
+</style>
 <h1>Lista de Fardos</h1>
 <p>Segue a lista de fardos registrados.</p>
 <hr>
@@ -32,7 +48,12 @@
         {% for fardo in object_list %}
         <tr>
           <td>{{fardo.id}}</td>
-          <td>{{fardo.codProduto}}</td>
+          <td>
+          <label id="texto">{{fardo.codProduto}}</label>
+          {% if fardo.codProduto.imagem %}
+          <div id="imagem-container"><img height="300px" src="{{ fardo.codProduto.imagem.url }}" alt=""></div>
+          {% endif %}
+          </td>
           <td>{{fardo.quantidade}}</td>
           <td>{{fardo.dataFabricacao}}</td>
           <td>{{fardo.dataValidade}}</td>
