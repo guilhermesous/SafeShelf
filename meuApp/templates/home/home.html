@@ -23,49 +23,50 @@
 {% else %}
 <p>Há dados restantes para preecnher, acesse <a href="/MeusDadosPessoais/">Minha Conta</a> para completar seu cadastro.</p>
 {% endif %}
-<p class="direitos">Copyright © 2024. SafeShelf. Desenvolvido por Guilherme Santos.</p>
 <hr>
 
 <h4>Fardos mais próximos do vencimento</h4>
-<table id="tabelaEstoque">
-    <thead>
-      <tr>
-        <th>Cód. Fardo</th>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Data de Validade</th>
-        <th>Dias Restantes</th>
-        <th>Condição</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for estoque in object_list %}
-      <tr>
-        <td>{{estoque.id}}</td>
-        <td>
-            <label id="texto">{{estoque.codProduto}}</label>
-            {% if estoque.codProduto.imagem %}
-            <div id="imagem-container"><img height="300px" src="{{ estoque.codProduto.imagem.url }}" alt=""></div>
-            {% endif %}
-        </td>
-        <td>{{estoque.quantidade}}</td>
-        <td>{{estoque.dataValidade}}</td>
-        {% if estoque.dias_restantes >= 0 %}
-        <td>{{estoque.dias_restantes}} dias</td>
-        {% else %}
-        <td>VENCIDO</td>
-        {% endif %}
-        {% if estoque.dias_restantes <= 0 %}
-            <td id="condicaovencido">{{estoque.condicao}}</td>
-        {% elif estoque.dias_restantes > 7 %}
-            <td id="condicaobom">{{estoque.condicao}}</td>
-        {% else %}
-            <td id="condicaoproximo">{{estoque.condicao}}</td>
-        {% endif %}
-      </tr>
-      {% endfor %}
-    </tbody>
-</table>
+<div class="divtable">
+  <table id="tabelaEstoque">
+      <thead>
+        <tr>
+          <th>Cód. Fardo</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Data de Validade</th>
+          <th>Dias Restantes</th>
+          <th>Condição</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for estoque in object_list %}
+        <tr>
+          <td>{{estoque.id}}</td>
+          <td>
+              <label id="texto">{{estoque.codProduto}}</label>
+              {% if estoque.codProduto.imagem %}
+              <div id="imagem-container"><img height="300px" src="{{ estoque.codProduto.imagem.url }}" alt=""></div>
+              {% endif %}
+          </td>
+          <td>{{estoque.quantidade}}</td>
+          <td>{{estoque.dataValidade}}</td>
+          {% if estoque.dias_restantes >= 0 %}
+          <td>{{estoque.dias_restantes}} dias</td>
+          {% else %}
+          <td>VENCIDO</td>
+          {% endif %}
+          {% if estoque.dias_restantes <= 0 %}
+              <td id="condicaovencido">{{estoque.condicao}}</td>
+          {% elif estoque.dias_restantes > 7 %}
+              <td id="condicaobom">{{estoque.condicao}}</td>
+          {% else %}
+              <td id="condicaoproximo">{{estoque.condicao}}</td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
 {% endblock %}
 {% block scripts %}
 <script>

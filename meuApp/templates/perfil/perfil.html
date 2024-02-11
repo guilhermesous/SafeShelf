@@ -5,8 +5,6 @@
 <p>Altere os dados que achar necessário.</p>
 <hr>
 <form action="" method="post">
-    <a href="/alteraSenha/">Alterar Senha</a>
-    <br>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Salvar Alterações</button>

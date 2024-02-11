@@ -23,46 +23,48 @@
 
 <form action="/uploadExcelEstoque/" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <div>
+  <div class="divexcel">
     <a class="txtexcel" id="download" href="/downloadExcelEstoque/">Download Modelo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-arquivo-estatístico-32.png" alt=""></a>
     <label class="txtexcel" id="upload" for="arquivoexcel">Upload Arquivo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-ms-excel-32.png" alt=""></label>
     <input class="inputexcel" type="file" name="inputexcel" id="arquivoexcel">
-    <button class="btnexcel" type="submit">Enviar</button>
+    <button class="btnexcel" id="btn_excel" type="submit">Enviar</button>
   </div>
 </form>
 
 <br>
 
-<table id="tabelaEstoque">
-      <thead>
-        <tr>
-          <th>Cód. Fardo</th>
-          <th>Produto</th>
-          <th>Quantidade</th>
-          <th>Data de Fabricação</th>
-          <th>Data de Validade</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for fardo in object_list %}
-        <tr>
-          <td>{{fardo.id}}</td>
-          <td>
-          <label id="texto">{{fardo.codProduto}}</label>
-          {% if fardo.codProduto.imagem %}
-          <div id="imagem-container"><img height="300px" src="{{ fardo.codProduto.imagem.url }}" alt=""></div>
-          {% endif %}
-          </td>
-          <td>{{fardo.quantidade}}</td>
-          <td>{{fardo.dataFabricacao}}</td>
-          <td>{{fardo.dataValidade}}</td>
-          <td><a title="Editar" href="/estoque/{{fardo.id}}"><img class='acoes' src="../../static/meuApp/imagens/icons8-editar-48.png" alt="Editar"></a>
-          <a title="Excluir" href="/ExcluirEstoque/{{fardo.id}}"><img class='acoes' src="../../static/meuApp/imagens/icons8-excluir-48.png" alt="Excluir"></a></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-  </table>
+<div class="divtable">
+  <table id="tabelaEstoque">
+        <thead>
+          <tr>
+            <th>Cód. Fardo</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Data de Fabricação</th>
+            <th>Data de Validade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fardo in object_list %}
+          <tr>
+            <td>{{fardo.id}}</td>
+            <td>
+            <label id="texto">{{fardo.codProduto}}</label>
+            {% if fardo.codProduto.imagem %}
+            <div id="imagem-container"><img height="300px" src="{{ fardo.codProduto.imagem.url }}" alt=""></div>
+            {% endif %}
+            </td>
+            <td>{{fardo.quantidade}}</td>
+            <td>{{fardo.dataFabricacao}}</td>
+            <td>{{fardo.dataValidade}}</td>
+            <td><a title="Editar" href="/estoque/{{fardo.id}}"><img class='acoes' src="../../static/meuApp/imagens/icons8-editar-48.png" alt="Editar"></a>
+            <a title="Excluir" href="/ExcluirEstoque/{{fardo.id}}"><img class='acoes' src="../../static/meuApp/imagens/icons8-excluir-48.png" alt="Excluir"></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
 {% block scripts %}
 <script>
@@ -102,5 +104,17 @@
 
   });
 
+</script>
+</script>
+<script>
+  document.getElementById('arquivoexcel').addEventListener('change', function() {
+    var fileInput = document.getElementById('arquivoexcel');
+    var submitButton = document.getElementById('btn_excel');
+    if (fileInput.files.length > 0) {
+      submitButton.style.display = 'block';
+    } else {
+      submitButton.style.display = 'none';
+    }
+  });
 </script>
 {% endblock %}
