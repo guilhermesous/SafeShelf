@@ -4,12 +4,13 @@
 <style>
   #imagem-container {
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: #fff;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   }
 
 #texto:hover + #imagem-container,
@@ -52,7 +53,7 @@
           <td>
             <label id="texto">{{produto.descricao}}</label>
             {% if produto.imagem %}
-            <div id="imagem-container"><img height="300px" src="{{ produto.imagem.url }}" alt=""></div>
+            <div id="imagem-container"><img id="previmg" height="300px" src="{{ produto.imagem.url }}" alt=""></div>
             {% endif %}
           </td>
           <td>{{produto.marca}}</td>
