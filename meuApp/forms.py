@@ -18,6 +18,10 @@ class EstoqueFormCreate(forms.ModelForm):
     class Meta:
         model = Estoque
         fields = ['codProduto', 'quantidade', 'dataFabricacao', 'dataValidade']
+        widgets = {
+            'dataFabricacao': forms.DateInput(attrs={'type': 'date'}),
+            'dataValidade': forms.DateInput(attrs={'type': 'date'}),
+        }
     def clean_dataFabricacao(self):
         dataFab = self.cleaned_data['dataFabricacao']
         data_atual = timezone.now().date()
