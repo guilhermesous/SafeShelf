@@ -8,6 +8,10 @@ class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
         fields = ['descricao', 'marca', 'tipo', 'preco', 'imagem']
+        widgets = {
+            'descricao': forms.TextInput(attrs={'type': 'text'}),
+            'marca': forms.TextInput(attrs={'type': 'text'}),
+        }
     def clean_preco(self):
         preco = self.cleaned_data['preco']
         if preco <= 0:
