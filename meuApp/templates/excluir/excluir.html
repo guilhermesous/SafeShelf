@@ -4,7 +4,6 @@
 <h1>Excluir</h1>
 <hr>
 <form action="" method="post">
-    <img src="../../static/meuApp/imagens/icons8-atenção-100.png" alt="">
     <p>Deseja excluir permanentemente: {{ object}}?</p>
     {% csrf_token %}
     {{ form.as_p }}
