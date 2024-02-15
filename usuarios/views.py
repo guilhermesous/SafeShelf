@@ -6,6 +6,7 @@ from .forms import UsuarioForm
 from django.core.mail import send_mail
 from .models import Perfil
 from django.core.exceptions import ValidationError
+from django.contrib import messages
 
 def origin(request):
     return redirect('/login')
@@ -17,6 +18,7 @@ class PerfilCreate(CreateView):
     def form_valid(self, form):
         url = super().form_valid(form)
         Perfil.objects.create(usuario=self.object)
+        messages.success(self.request,'Usuário criado com sucesso!')
         return url
 
 def redefinirSenha(request):
@@ -31,6 +33,7 @@ def enviarEmail(request):
     from_email = 'safeshelf.bot@gmail.com'
     recipient_list = [f'{email}']
     send_mail(subject, message, from_email, recipient_list)
+    messages.success(request, 'E-mail enviado com sucesso!')
 
     if User.objects.filter(email = email).exists():
         usuario = User.objects.get(email=email)

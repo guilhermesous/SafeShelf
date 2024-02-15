@@ -6,11 +6,23 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="../static/usuarios/css/login.css">
     <link rel="shortcut icon" href="../static/usuarios/imagens/favicon.png" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 </head>
 <body>
     <div class="page">
         {% block content %}
         {% endblock %}
     </div>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    {% for flashmsg in messages %}
+        <script>
+            alertify.set('notifier','position', 'top-center');
+            alertify.success('{{flashmsg}}');
+            document.querySelector('.alertify-notifier').style.zIndex = '6000';
+        </script>
+    {% endfor %}
 </body>
 </html>
