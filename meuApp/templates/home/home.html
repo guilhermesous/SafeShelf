@@ -20,7 +20,7 @@
 </style>
 <h1>SafeShelf</h1>
 {% if user.perfil.nomeCompleto %}
-<p>Bem-Vindo ao SafeShelf {{ user.perfil.nomeCompleto }}</p>
+<p>Bem-Vindo ao SafeShelf, {{ user.perfil.nomeCompleto }}</p>
 {% else %}
 <p>Há dados restantes para preecnher, acesse <a href="/MeusDadosPessoais/">Minha Conta</a> para completar seu cadastro.</p>
 {% endif %}
