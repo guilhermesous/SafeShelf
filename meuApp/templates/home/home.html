@@ -52,11 +52,11 @@
           <td>{{estoque.quantidade}}</td>
           <td>{{estoque.dataValidade}}</td>
           {% if estoque.dias_restantes >= 0 %}
-          <td>{{estoque.dias_restantes}} dias</td>
+            <td>{{estoque.dias_restantes}} dias</td>
           {% else %}
           <td>VENCIDO</td>
           {% endif %}
-          {% if estoque.dias_restantes <= 0 %}
+          {% if estoque.dias_restantes < 0 %}
               <td id="condicaovencido">{{estoque.condicao}}</td>
           {% elif estoque.dias_restantes > 7 %}
               <td id="condicaobom">{{estoque.condicao}}</td>

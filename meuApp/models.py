@@ -35,9 +35,9 @@ class Estoque(models.Model):
         return dias_restantes
     def condicao(self):
         dias_restantes = self.dias_restantes()
-        if dias_restantes <= 0:
+        if dias_restantes < 0:
             condicao = 'VENCIDO'
-        elif 0 <  dias_restantes <= 7:
+        elif 0 <=  dias_restantes <= 7:
             condicao = 'PRÓXIMO DE VENCER'
         else:
             condicao = 'PROVEITOSO'
