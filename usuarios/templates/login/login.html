@@ -10,4 +10,10 @@
             <p>Novo por Aqui? <a href="/cadastrar/">Cadastre-se</a></p>
             <button type="submit" class="btn">Entrar</button>
 </form>
+    <script>
+        var labels = document.querySelectorAll('form label');
+        labels.forEach(function(label) {
+            label.insertAdjacentHTML('afterend', '<br>');
+        });
+    </script>
 {% endblock %}
