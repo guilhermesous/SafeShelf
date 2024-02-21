@@ -24,17 +24,5 @@
             document.querySelector('.alertify-notifier').style.zIndex = '6000';
         </script>
     {% endfor %}
-    <script>
-        var labels = document.querySelectorAll('form label');
-        labels.forEach(function(label) {
-            label.insertAdjacentHTML('afterend', '<br>');
-        });
-    </script>
-    <script>
-        var spans = document.querySelectorAll('form span');
-        spans.forEach(function(span) {
-            span.insertAdjacentHTML('beforebegin', '<br>');
-        });
-    </script>
 </body>
 </html>
