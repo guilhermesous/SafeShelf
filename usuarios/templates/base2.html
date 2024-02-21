@@ -27,7 +27,7 @@
     <script>
         var labels = document.querySelectorAll('form label');
         labels.forEach(function(label) {
-        label.parentNode.removeChild(label);
+            label.insertAdjacentHTML('afterend', '<br>');
         });
     </script>
 </body>
