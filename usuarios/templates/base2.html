@@ -24,5 +24,11 @@
             document.querySelector('.alertify-notifier').style.zIndex = '6000';
         </script>
     {% endfor %}
+    <script>
+        var labels = document.querySelectorAll('form label');
+        labels.forEach(function(label) {
+        label.parentNode.removeChild(label);
+        });
+    </script>
 </body>
 </html>
