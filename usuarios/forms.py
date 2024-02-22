@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 class CustomAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['placeholder'] = 'Digite seu usuário'
-        self.fields['password'].widget.attrs['placeholder'] = 'Digite sua senha'
+        self.fields['username'].widget.attrs['placeholder'] = 'Usuário'
+        self.fields['password'].widget.attrs['placeholder'] = 'Senha'
 
 class UsuarioForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
