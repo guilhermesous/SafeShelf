@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 import pandas as pd
-from meuApp.forms import EstoqueFormCreate, ProdutoForm, EstoqueFormUpdate
+from meuApp.forms import EstoqueFormCreate, ProdutoForm, EstoqueFormUpdate, PerfilUpdateForm, CustomPasswordChangeForm
 from .models import Produto, Estoque
 from django.contrib.auth.mixins import LoginRequiredMixin
 from usuarios.models import Perfil
@@ -127,7 +127,7 @@ class PerfilUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     template_name = "perfil/perfil.html"
     model = Perfil
-    fields = ["nomeCompleto", "telefone"]
+    form_class = PerfilUpdateForm
     success_url = reverse_lazy("PerfilUpdate")
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Perfil, usuario=self.request.user)
@@ -139,7 +139,7 @@ class PerfilUpdate(LoginRequiredMixin, UpdateView):
     
 class AlteraSenha(LoginRequiredMixin, PasswordChangeView):
     login_url = reverse_lazy('login')
-    form_class = PasswordChangeForm
+    form_class = CustomPasswordChangeForm
     template_name = "perfil/senha.html"
     success_url = reverse_lazy('alteraSenha')
     def form_valid(self, form):

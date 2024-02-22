@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from .forms import UsuarioForm
+from .forms import UsuarioForm, CustomUsuarioForm
 from django.core.mail import send_mail
 from .models import Perfil
 from django.core.exceptions import ValidationError
@@ -13,7 +13,7 @@ def origin(request):
 
 class PerfilCreate(CreateView):
     template_name = "login/cadastro.html"
-    form_class = UsuarioForm
+    form_class = CustomUsuarioForm
     success_url = reverse_lazy('login')
     def form_valid(self, form):
         url = super().form_valid(form)
