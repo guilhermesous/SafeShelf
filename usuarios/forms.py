@@ -26,6 +26,6 @@ class UsuarioForm(UserCreationForm):
 class CustomUsuarioForm(UsuarioForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['email'].widget = forms.PasswordInput(attrs={'placeholder': 'E-mail'})
+        self.fields['email'].widget = forms.EmailInput(attrs={'placeholder': 'E-mail'})
         self.fields['password1'].widget = forms.PasswordInput(attrs={'placeholder': 'Senha'})
         self.fields['password2'].widget = forms.PasswordInput(attrs={'placeholder': 'Confirmação de senha'})
