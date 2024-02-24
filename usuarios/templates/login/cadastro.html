@@ -1,24 +1,31 @@
 {% extends 'base2.html' %}
 {% block title %}Cadastre-se{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="../static/usuarios/css/cadastrar.css">
 <form action="" method="POST" class="formLogin">
-{% csrf_token %}
-            <h1>Cadastro</h1>
+    {% csrf_token %}
+    <div id="cadform">
+        <img class="logologin" src="../../static/usuarios/imagens/Picsart_24-02-17_10-01-27-703.png" alt="">
+        <div id="cadform2">
+            <h1>Cadastre-se</h1>
             <p>Digite os dados obrigatórios campo abaixo.</p>
-            {{ form.as_p }}
-            <br>
-            <button type="submit" class="btn">Cadastrar</button>
-        </form>
-    <script>
-        var labels = document.querySelectorAll('form label');
-        labels.forEach(function(label) {
-            label.insertAdjacentHTML('afterend', '<br>');
-        });
-    </script>
-    <script>
-        var spans = document.querySelectorAll('form span');
-        spans.forEach(function(span) {
-            span.insertAdjacentHTML('beforebegin', '<br>');
-        });
-    </script>
+        </div>
+    </div>
+    {{ form.as_p }}
+    <br>
+    <button type="submit" class="btn">Cadastrar</button>
+</form>
+
+<script>
+    var labels = document.querySelectorAll('form label');
+    labels.forEach(function(label) {
+        label.insertAdjacentHTML('afterend', '<br>');
+    });
+</script>
+<script>
+    var spans = document.querySelectorAll('form span');
+    spans.forEach(function(span) {
+        span.insertAdjacentHTML('beforebegin', '<br>');
+    });
+</script>
 {% endblock %}

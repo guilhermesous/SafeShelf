@@ -1,0 +1,33 @@
+.formLogin{
+    width: 300px;
+}
+
+p{
+    font-size: 12px;
+    text-align: center;
+    margin: 0 5px;
+    font-weight: 400;
+}
+
+h1{
+    margin: 10px 0 10px 0;
+}
+
+#emailform{
+    text-align: center;
+}
+
+#emailform img{
+    margin: auto;
+    width: 150px;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+@media(max-width:500px){
+    .page{
+        height: 90vh;
+    }
+}

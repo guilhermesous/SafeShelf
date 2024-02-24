@@ -1,19 +1,17 @@
 {% extends 'base2.html' %}
 {% block title %}Tela de Login{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="../static/usuarios/css/login.css">
 <form action="" method="POST" class="formLogin">
 {% csrf_token %}
-            <h1>Login</h1>
-            <p>Digite os seus dados de acesso no campo abaixo.</p>
-            {{ form.as_p }}
-            <a href="/redefinirSenha/">Esqueceu a Senha?</a>
-            <p>Novo por Aqui? <a href="/cadastrar/">Cadastre-se</a></p>
-            <button type="submit" class="btn">Entrar</button>
+            <div id="loginform">
+                <img class="logologin" src="../../static/usuarios/imagens/Picsart_24-02-17_10-01-27-703.png" alt="">
+                {{ form.as_p }}
+            </div>
+            <div id="loginoptions">
+                <a href="/redefinirSenha/">Esqueceu a Senha?</a>
+                <p>Novo por Aqui? <a href="/cadastrar/">Cadastre-se</a></p>
+            </div>
+            <div class="formbtn"><button type="submit" class="btn">Entrar</button></div>
 </form>
-    <script>
-        var labels = document.querySelectorAll('form label');
-        labels.forEach(function(label) {
-            label.insertAdjacentHTML('afterend', '<br>');
-        });
-    </script>
 {% endblock %}

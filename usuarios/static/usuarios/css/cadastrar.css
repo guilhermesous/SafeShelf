@@ -1,0 +1,50 @@
+h1, p, ul{
+    margin: 0;
+}
+
+span, li{
+    font-size: 11px;
+}
+
+ul{
+    padding: 0 0 0 14px;
+}
+
+.errorlist{
+    padding: 30px 0 0 14px;
+    color: #FF3131;
+}
+
+input{
+    width: 90%;
+}
+
+#cadform{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+}
+
+#cadform img{
+    width: 150px;
+    margin-bottom: 5px;
+}
+
+#cadform2{
+    margin-bottom: 13px;
+}
+
+@media(max-width:500px){
+    .page{
+        height: 120vh;
+    }
+
+    .formLogin{
+        width: 300px;
+    }
+    #cadform{
+        flex-direction: column;
+        align-items: baseline;
+    }
+}
