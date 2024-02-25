@@ -10,6 +10,10 @@ body {
     background-repeat: no-repeat;
 }
 
+p{
+    font-size: 13px;
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -57,13 +61,13 @@ body {
 
     background-size: 300%;
     background-position: left;
-    transition: 0.5s background-position ease-in-out;
+    transition: 1s background-position ease-in-out;
 }
 
 .formbtn{
     margin: auto;
 }
 
-.btn:hover, btn:focus{
+.btn:hover, .btn:focus{
     background-position: right;
 }

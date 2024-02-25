@@ -1,3 +1,7 @@
+p{
+    position: relative;
+}
+
 .formLogin{
     width: 300px;
 }
@@ -55,6 +59,15 @@
     list-style: none;
     padding: 0;
     text-align: center;
+}
+
+p .formicons {
+    bottom: 19%;
+    position: absolute;
+    width: 20px !important;
+    right: 3%;
+    cursor: pointer;
+    background-color: white;
 }
 
 @media(max-width:500px){

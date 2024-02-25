@@ -10,7 +10,10 @@
     </div>
     <p>Digite seu email cadastrado para redefinir sua senha.</p>
     <label>Email</label>
-    <input placeholder="Email" type="email" name="emailsenha">
+    <div id="divicon">
+        <input placeholder="Email" id="id_email" type="email" name="emailsenha">
+        <img class="formicons" oncontextmenu="return false;" src="../../static/usuarios/imagens/icons8-e-mail-100.png" alt="">
+    </div>
     <div class="formbtn"><button type="submit" class="btn">Enviar</button></div>
 </form>
 {% endblock %}

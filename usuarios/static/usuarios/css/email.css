@@ -23,7 +23,20 @@ h1{
 }
 
 input{
+    width: 90%;
     margin-bottom: 10px;
+}
+
+#divicon{
+    position: relative;
+}
+
+#divicon img{
+    width: 20px;
+    position: absolute;
+    left: 91%;
+    bottom: 40%;
+    background-color: white;
 }
 
 @media(max-width:500px){
