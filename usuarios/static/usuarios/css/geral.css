@@ -34,6 +34,10 @@ p{
     gap: 5px
 }
 
+p{
+    font-size: 13px;
+}
+
 .formLogin input {
     padding: 15px;
     font-size: 14px;
