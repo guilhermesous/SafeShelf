@@ -64,6 +64,6 @@ body {
     margin: auto;
 }
 
-.btn:hover, btn:focus{
+.btn:hover, .btn:focus{
     background-position: right;
 }
