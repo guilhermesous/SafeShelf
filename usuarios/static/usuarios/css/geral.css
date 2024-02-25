@@ -30,18 +30,6 @@ body {
     gap: 5px
 }
 
-.btn {
-    width: 140px;
-    height: 50px;
-    border-radius: 30px;
-    background: linear-gradient(to right, #000000, #161927);
-    color: white;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-}
-
 .formLogin input {
     padding: 15px;
     font-size: 14px;
@@ -52,15 +40,30 @@ body {
     outline: none;
 }
 
-
 .formLogin input:focus {
     border: 1px solid #868686;
+}
+
+.btn {
+    width: 140px;
+    height: 50px;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, #000000, #161927, #161927, #000000);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+
+    background-size: 300%;
+    background-position: left;
+    transition: 0.5s background-position ease-in-out;
 }
 
 .formbtn{
     margin: auto;
 }
 
-.btn:hover {
-    background: #161927;
+.btn:hover, btn:focus{
+    background-position: right;
 }

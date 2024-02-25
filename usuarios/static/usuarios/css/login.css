@@ -50,6 +50,13 @@
     margin: 5px 0;
 }
 
+.errorlist{
+    color: #FF3131;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
 @media(max-width:500px){
     .page{
         height: 90vh;
