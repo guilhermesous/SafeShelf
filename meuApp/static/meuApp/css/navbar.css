@@ -29,6 +29,7 @@ header{
 .logo {
     display: inline-block;
     text-decoration: none;
+    transition: 0.5s;
   }
   
   .logo-container {
@@ -49,6 +50,12 @@ header{
 
   .imglogo{
     width: 80px;
+}
+
+.logo:hover, .logo:focus{
+    border: #1A1E34 2px solid;
+    padding: 0 10px;
+    border-radius: 10px;
 }
 
 header .navbar ul{
