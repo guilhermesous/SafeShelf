@@ -38,6 +38,10 @@ p{
     font-size: 13px;
 }
 
+p .iconsenha{
+    cursor: pointer;
+}
+
 .formLogin input {
     padding: 15px;
     font-size: 14px;
