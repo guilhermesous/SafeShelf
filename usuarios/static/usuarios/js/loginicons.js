@@ -14,4 +14,4 @@ var inputarea3 = document.getElementById('id_username');
 inputarea3.insertAdjacentHTML('afterend', '<img class="formicons" oncontextmenu="return false;" src="../../static/usuarios/imagens/icons8-convidado-masculino-100.png" alt="">');
 
 var inputarea = document.getElementById('id_password');
-inputarea.insertAdjacentHTML('afterend', '<img class="formicons" id="btnsenha"  src="../../static/usuarios/imagens/icons8-visível-100.png" onclick="mostrarSenha()" alt="">');
+inputarea.insertAdjacentHTML('afterend', '<img class="formicons iconsenha" id="btnsenha"  src="../../static/usuarios/imagens/icons8-visível-100.png" onclick="mostrarSenha()" alt="">');
