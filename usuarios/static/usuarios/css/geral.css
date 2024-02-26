@@ -10,10 +10,6 @@ body {
     background-repeat: no-repeat;
 }
 
-p{
-    font-size: 13px;
-}
-
 .page {
     display: flex;
     flex-direction: column;
