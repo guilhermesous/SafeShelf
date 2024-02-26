@@ -20,10 +20,10 @@ function mostrarSenha(){
 }
 
 var inputarea = document.getElementById('id_password1');
-inputarea.insertAdjacentHTML('afterend', '<img class="formicons" id="btnsenha"  src="../../static/usuarios/imagens/icons8-visível-100.png" onclick="mostrarSenha()" alt="">');
+inputarea.insertAdjacentHTML('afterend', '<img class="formicons iconsenha" id="btnsenha"  src="../../static/usuarios/imagens/icons8-visível-100.png" onclick="mostrarSenha()" alt="">');
 
 var inputarea2 = document.getElementById('id_password2');
-inputarea2.insertAdjacentHTML('afterend', '<img class="formicons" id="btnsenha2"  src="../../static/usuarios/imagens/icons8-visível-100.png" onclick="mostrarSenha()" alt="">');
+inputarea2.insertAdjacentHTML('afterend', '<img class="formicons iconsenha" id="btnsenha2"  src="../../static/usuarios/imagens/icons8-visível-100.png" onclick="mostrarSenha()" alt="">');
 
 var inputarea3 = document.getElementById('id_username');
 inputarea3.insertAdjacentHTML('afterend', '<img class="formicons" oncontextmenu="return false;" src="../../static/usuarios/imagens/icons8-convidado-masculino-100.png" alt="">');
