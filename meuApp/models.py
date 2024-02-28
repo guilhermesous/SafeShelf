@@ -38,7 +38,7 @@ class Estoque(models.Model):
         if dias_restantes < 0:
             condicao = 'VENCIDO'
         elif 0 <=  dias_restantes <= 14:
-            condicao = 'PRÓXIMO DE VENCER'
+            condicao = 'À VENCER'
         else:
-            condicao = 'PROVEITOSO'
+            condicao = 'ÚTIL'
         return condicao
