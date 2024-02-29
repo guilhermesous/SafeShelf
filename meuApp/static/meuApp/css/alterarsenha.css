@@ -1,0 +1,84 @@
+#id_old_password, #id_new_password1, #id_new_password2{
+    width: 600px;
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+}
+
+#id_old_password:focus, #id_new_password1:focus, #id_new_password2:focus{
+    border: 1px solid #868686;
+}
+
+p{
+    position: relative;
+}
+
+p .formicons {
+    position: absolute;
+    width: 20px;
+    margin-top: 20px;
+    left: 560px;
+    background-color: white;
+    cursor: pointer;
+}
+
+form ul{
+    margin: 0;
+    padding: 0 0 0 14px;
+}
+
+form li{
+    font-size: 11px;
+}
+
+.bntConfirmar{
+    width: 140px;
+    height: 50px;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, #000000, #161927, #161927, #000000);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background-size: 300%;
+    background-position: left;
+    transition: 1s background-position ease-in-out;
+}
+  
+.bntConfirmar:hover, .bntConfirmar:focus{
+background-position: right;
+}
+
+.bntLimpar{
+border-radius: 30px;
+height: 50px;
+width: 140px;
+background-color: #ffffff;
+border: none;
+font-size: 20px;
+text-decoration: underline;
+font-weight: 700;
+cursor: pointer;
+background-size: 300%;
+background-position: left;
+transition: 1s background-position ease-in-out;
+}
+
+.errorlist{
+    padding: 0 0 0 14px;
+    color: #FF3131;
+}
+
+@media(max-width:800px){
+    #id_old_password, #id_new_password1, #id_new_password2{
+        width: 100%;
+    }
+    p .formicons{
+        left: 90%;
+    }
+}

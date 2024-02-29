@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Cadastrar Estoque{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="../../static/meuApp/css/estoque.css">
 <h1>Cadastro de Fardos (Estoque)</h1>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Cadastrar</button>
+    <button type="submit" class="btn_cadastrar_estoque">Cadastrar</button>
+    <button type="reset" class="btn_limpar_estoque">Limpar</button>
 </form>
 {% endblock %}
 {% block scripts %}

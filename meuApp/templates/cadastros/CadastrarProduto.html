@@ -2,6 +2,7 @@
 {% block title %}Cadastrar Produtos{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="../static/meuApp/css/preview.css">
+<link rel="stylesheet" href="../../static/meuApp/css/produtos.css">
   
 <h1>Cadastro de Produtos</h1>
 <hr>
@@ -11,7 +12,8 @@
     <label class="picture" for="id_imagem" tabIndex="0">
         <span class="picture__image"></span>
     </label>
-    <button type="submit">Cadastrar</button>
+    <button type="submit" class="btn_salvarproduto">Cadastrar</button>
+    <button type="reset" class="btn_limparproduto">Limpar</button>
 </form>
 {% endblock %}
 

@@ -25,10 +25,10 @@
 <form action="/uploadExcelProdutos/" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="divexcel">
-    <a class="txtexcel" id="download" href="/downloadExcelProdutos/">Download Modelo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-arquivo-estatístico-32.png" alt=""></a>
-    <label class="txtexcel" id="upload" for="arquivoexcel">Upload Arquivo Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-ms-excel-32.png" alt=""></label>
+    <a class="txtexcel" id="download" href="/downloadExcelProdutos/">Download Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-arquivo-estatístico-32.png" alt=""></a>
+    <label class="txtexcel" id="upload" for="arquivoexcel">Upload Excel <img class="imgexcel" src="../../static/meuApp/imagens/icons8-ms-excel-32.png" alt=""></label>
     <input class="inputexcel" type="file" name="inputexcel" id="arquivoexcel">
-    <button class="btnexcel" id="btn_excel" type="submit">Enviar</button>
+    <button class="btnexcel" id="btn_excel" type="submit">Enviar <img id = "btnenviar" class="acoes" src="../../static/meuApp/imagens/icons8-enviado-100.png" alt=""></button>
   </div>
 </form>
 

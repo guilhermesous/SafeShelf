@@ -57,11 +57,11 @@
           <td>VENCIDO</td>
           {% endif %}
           {% if estoque.dias_restantes < 0 %}
-              <td id="condicaovencido">{{estoque.condicao}}</td>
+            <td class="Tamanho"><label id="condicaovencido">{{estoque.condicao}}</label></td>
           {% elif estoque.dias_restantes > 14 %}
-              <td id="condicaobom">{{estoque.condicao}}</td>
+            <td class="Tamanho"><label id="condicaobom">{{estoque.condicao}}</label></td>
           {% else %}
-              <td id="condicaoproximo">{{estoque.condicao}}</td>
+            <td class="Tamanho"><label id="condicaoproximo">{{estoque.condicao}}</label></td>
           {% endif %}
         </tr>
         {% endfor %}

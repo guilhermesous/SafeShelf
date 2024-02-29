@@ -3,7 +3,7 @@
 }
     
 .picture {
-width: 340px;
+width: 600px;
 aspect-ratio: 16/9;
 background: #ddd;
 display: flex;
@@ -37,4 +37,11 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
 .picture__img {
 max-width: 100%;
+}
+
+@media(max-width:800px){
+    .picture{
+        width: 100%;
+        text-align: center;
+    }
 }

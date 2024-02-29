@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Meus Dados{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="../../static/meuApp/css/meusDados.css">
 <h1>Meus Dados</h1>
 <p>Altere os dados que achar necessário.</p>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Salvar Alterações</button>
+    <!--Criação da Classe confirmar -->
+    <button class="bntConfirmar"  type="submit">Confirmar</button>
+    <!--Criação do botão e classe Limpar -->
+    <button class="bntLimpar" type="reset">Limpar</button>
 {% endblock %}
 {% block scripts %}
 <script src="../../static/meuApp/js/jquery.mask.js"></script>

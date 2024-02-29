@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Alterar Senha{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="../../static/meuApp/css/alterarsenha.css">
 <h1>Mudar Senha</h1>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Salvar nova Senha</button>
+    <button class="bntConfirmar" type="submit">Confirmar</button>
+    <button class="bntLimpar" type="reset">Limpar</button>
+<script src="../../static/meuApp/js/trocaS.js"></script>
 {% endblock %}

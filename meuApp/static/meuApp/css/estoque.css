@@ -1,0 +1,59 @@
+#id_codProduto, #id_quantidade, #id_dataFabricacao, #id_dataValidade {
+    width: 600px;
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+}
+
+#id_dataFabricacao, #id_dataValidade{
+    text-transform: lowercase;
+}
+
+#id_codProduto:focus, #id_quantidade:focus, #id_dataFabricacao:focus, #id_dataValidade:focus {
+    border: 1px solid #868686;
+}
+
+.btn_cadastrar_estoque {
+    width: 140px;
+    height: 50px;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, #000000, #161927, #161927, #000000);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background-size: 300%;
+    background-position: left;
+    transition: 1s background-position ease-in-out;
+}
+
+.btn_cadastrar_estoque:hover,
+.btn_cadastrar_estoque:focus {
+    background-position: right;
+}
+
+.btn_limpar_estoque {
+    border-radius: 30px;
+    height: 50px;
+    width: 140px;
+    background-color: #ffffff;
+    border: none;
+    font-size: 20px;
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+    background-size: 300%;
+    background-position: left;
+    transition: 1s background-position ease-in-out;
+}
+
+@media(max-width:800px){
+    #id_codProduto, #id_quantidade, #id_dataFabricacao, #id_dataValidade{
+      width: 100%;
+    }
+  }

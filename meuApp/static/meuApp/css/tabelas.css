@@ -1,15 +1,16 @@
-/*Tabelas das listas*/
-/*.divtable{
-    overflow-x: auto;
-  }*/
-  
 table {
-border-collapse: collapse;
-width: 100%;
-margin-top: 20px;
-white-space: nowrap;
+    border-collapse: collapse;
+    width: 99.5%;
+    margin-top: 20px;
+    white-space: nowrap;
+    box-shadow: 1px 1px 10px #888888;
+    background-color: white;
+    
+    td {
+      background-color: white;
+    }
 }
-
+    
 th, td {
 border: 1px solid #b3b3b3;
 padding: 8px;
@@ -17,19 +18,41 @@ text-align: center !important;
 }
 
 th {
-background-color: #dadada;
+background-color: #E1E1E1;
 }
-
+/* Adicionado cores aos tipos de produtos (vencido,proveitoso e etc) */
 #condicaovencido{
-border-left: #575757 3px solid;
+    background-color: #737373 ;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    width: 140px;
+    height: 35px;
+    font-weight: 500;
+    padding-top: 5px;
 }
 
 #condicaoproximo{
-border-left: #690000 3px solid;
+background-color:#FF3131;
+border-radius: 40px;
+text-align: center;
+color: white;
+width: 140px;
+height: 35px;
+font-weight: 500;
+padding-top: 5px;
 }
 
 #condicaobom{
-border-left: #02723B 3px solid;
+background-color: #00BF63;
+text-align: center;
+border-radius: 30px;
+color: white;
+width: 140px;
+height: 35px;
+font-weight: 500;
+padding-top: 5px;
+
 }
 
 .acoes{
@@ -83,15 +106,24 @@ width: 25px;
 padding-bottom: 3px;
 }
 
+/*Estilização do botão de enviar*/
 .btnexcel{
+background-color: white;
+font-size: 17px;
+font-weight: 500;
+color:#02723B ;
 display: none;
 margin-left: 10px;
+padding: 2px;
+border: none;
+border: 1px solid #02723B;
+border-radius: 4px;
 }
 
 @media(max-width:1000px){
     .divtable{
         overflow-x: auto;
-      }
+        }
 }
 
 @media(max-width:800px){
@@ -101,4 +133,3 @@ margin-left: 10px;
     margin-bottom: 10px;
     }
 }
-  

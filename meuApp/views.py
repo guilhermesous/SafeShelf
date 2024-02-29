@@ -58,7 +58,7 @@ class ProdutoUpdate(LoginRequiredMixin, UpdateView):
 class ProdutoDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Produto
-    template_name = "excluir/excluir.html"
+    template_name = "excluir/excluirProduto.html"
     success_url = reverse_lazy('ProdutoList')
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Produto, pk=self.kwargs['pk'], usuario=self.request.user)
@@ -113,7 +113,7 @@ class EstoqueUpdate(LoginRequiredMixin, UpdateView):
 class EstoqueDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Estoque
-    template_name = "excluir/excluir.html"
+    template_name = "excluir/excluirEstoque.html"
     success_url = reverse_lazy('EstoqueList')
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Estoque, pk=self.kwargs['pk'], usuario=self.request.user)
