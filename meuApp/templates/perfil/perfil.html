@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../../static/meuApp/css/meusDados.css">
 <h1>Meus Dados</h1>
 <p>Altere os dados que achar necessário.</p>
+<a href="{% url 'UserUpdate' user.pk %}">Alterar Dados de Acesso</a>
 <hr>
 <form action="" method="post">
     {% csrf_token %}

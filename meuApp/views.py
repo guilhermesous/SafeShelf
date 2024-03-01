@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 import pandas as pd
-from meuApp.forms import EstoqueFormCreate, ProdutoForm, EstoqueFormUpdate, PerfilUpdateForm, CustomPasswordChangeForm
+from meuApp.forms import EstoqueFormCreate, ProdutoForm, EstoqueFormUpdate, PerfilUpdateForm, CustomPasswordChangeForm, UpdateUsuario
 from .models import Produto, Estoque
 from django.contrib.auth.mixins import LoginRequiredMixin
 from usuarios.models import Perfil
@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from openpyxl import Workbook
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 class HomeView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
@@ -145,6 +146,21 @@ class AlteraSenha(LoginRequiredMixin, PasswordChangeView):
     def form_valid(self, form):
         response = super().form_valid(form)
         messages.success(self.request, 'Senha Atualizada com Sucesso!')
+        return response
+    
+class UsuarioUpdate(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
+    form_class = UpdateUsuario
+    template_name = "perfil/user.html"
+    success_url = reverse_lazy('PerfilUpdate')
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(User, pk=self.request.user.pk)
+        return self.object
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Usuário Atualizado!')
         return response
 
 @login_required

@@ -4,7 +4,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
-    text-transform: capitalize;
     text-decoration: none;
 }
 
@@ -24,6 +23,7 @@ header{
     justify-content: space-between;
     z-index: 5000;
     font-weight: bolder;
+    text-transform: capitalize;
 }
 
 .logo {

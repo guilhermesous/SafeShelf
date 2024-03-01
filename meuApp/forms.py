@@ -4,7 +4,9 @@ from .models import Estoque, Produto
 from usuarios.models import Perfil
 from django.core.exceptions import ValidationError
 from django.http import request
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.views import PasswordChangeForm
+from django.contrib.auth.models import User
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
@@ -76,3 +78,13 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         self.fields['old_password'].widget = forms.PasswordInput(attrs={'placeholder': 'Digite a senha atual'})
         self.fields['new_password1'].widget = forms.PasswordInput(attrs={'placeholder': 'Digite a senha nova'})
         self.fields['new_password2'].widget = forms.PasswordInput(attrs={'placeholder': 'Repita a senha'})
+
+class UpdateUsuario(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = User
+        fields = ['username', 'email']
+    def clean_email(self):
+        e = self.cleaned_data['email']
+        if User.objects.filter(email = e).exists():
+            raise ValidationError(f"O email {e} já está em uso.")
+        return e

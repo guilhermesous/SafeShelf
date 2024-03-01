@@ -33,6 +33,7 @@
         <tr>
           <th>Cód. Fardo</th>
           <th>Produto</th>
+          <th>Marca</th>
           <th>Quantidade</th>
           <th>Data de Validade</th>
           <th>Dias Restantes</th>
@@ -49,6 +50,7 @@
               <div id="imagem-container"><img height="300px" src="{{ estoque.codProduto.imagem.url }}" alt=""></div>
               {% endif %}
           </td>
+          <td>{{estoque.codProduto.marca}}</td>
           <td>{{estoque.quantidade}}</td>
           <td>{{estoque.dataValidade}}</td>
           {% if estoque.dias_restantes >= 0 %}

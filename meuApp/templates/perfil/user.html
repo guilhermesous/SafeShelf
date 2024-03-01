@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Dados de Acesso{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../../static/meuApp/css/meusDados.css">
+<h1>Dados de Acesso</h1>
+<p>Altere os dados que achar necessário.</p>
+<hr>
+<form id="myform" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!--Criação da Classe confirmar -->
+    <button class="bntConfirmar"  type="submit">Confirmar</button>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var form = document.getElementById('myform');
+    var thirdParagraph = form.getElementsByTagName('p')[2];
+    form.removeChild(thirdParagraph);
+</script>
+{% endblock %}
