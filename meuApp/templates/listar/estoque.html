@@ -40,6 +40,7 @@
           <tr>
             <th>Cód. Fardo</th>
             <th>Produto</th>
+            <th>Marca</th>
             <th>Quantidade</th>
             <th>Data de Fabricação</th>
             <th>Data de Validade</th>
@@ -56,6 +57,7 @@
             <div id="imagem-container"><img height="300px" src="{{ fardo.codProduto.imagem.url }}" alt=""></div>
             {% endif %}
             </td>
+            <td>{{estoque.codProduto.marca}}</td>
             <td>{{fardo.quantidade}}</td>
             <td>{{fardo.dataFabricacao}}</td>
             <td>{{fardo.dataValidade}}</td>
