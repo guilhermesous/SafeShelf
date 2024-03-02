@@ -12,13 +12,16 @@ table {
 }
     
 th, td {
-border: 1px solid #b3b3b3;
 padding: 8px;
 text-align: center !important;
 }
 
-th {
-background-color: #E1E1E1;
+td {
+border-top: 1px solid #c9c9c9 !important;
+}
+
+.thcod{
+    width: 192.281px;
 }
 /* Adicionado cores aos tipos de produtos (vencido,proveitoso e etc) */
 #condicaovencido{

@@ -38,7 +38,7 @@
   <table id="tabelaProduto">
       <thead>
         <tr>
-          <th>Cód. Produto</th>
+          <th class="thcod">Cód. Produto</th>
           <th>Descrição</th>
           <th>Marca</th>
           <th>Tipo</th>
@@ -49,7 +49,7 @@
       <tbody>
         {% for produto in object_list %}
         <tr>
-          <td>{{produto.id}}</td>
+          <td class="thcod">{{produto.id}}</td>
           <td>
             <label id="texto">{{produto.descricao}}</label>
             {% if produto.imagem %}
