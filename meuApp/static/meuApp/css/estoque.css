@@ -11,6 +11,14 @@
 
 #id_dataFabricacao, #id_dataValidade{
     text-transform: lowercase;
+    background: url(../imagens/icons8-calendário-100.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 98%;
+}
+
+#id_dataFabricacao::-webkit-calendar-picker-indicator, #id_dataValidade::-webkit-calendar-picker-indicator{
+    opacity: 0;
 }
 
 #id_codProduto:focus, #id_quantidade:focus, #id_dataFabricacao:focus, #id_dataValidade:focus {
