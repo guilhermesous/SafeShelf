@@ -19,6 +19,7 @@
 
 #id_dataFabricacao::-webkit-calendar-picker-indicator, #id_dataValidade::-webkit-calendar-picker-indicator{
     opacity: 0;
+    cursor: pointer;
 }
 
 #id_codProduto:focus, #id_quantidade:focus, #id_dataFabricacao:focus, #id_dataValidade:focus {
