@@ -14,7 +14,7 @@
     background: url(../imagens/icons8-calendário-100.png);
     background-size: 20px;
     background-repeat: no-repeat;
-    background-position: 98%;
+    background-position: 97%;
 }
 
 #id_dataFabricacao::-webkit-calendar-picker-indicator, #id_dataValidade::-webkit-calendar-picker-indicator{
