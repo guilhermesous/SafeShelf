@@ -82,6 +82,7 @@ font-weight: bold;
 #upload{
 background-color: #02723B;
 color: #F6F8F7;
+transition: 0.5s;
 }
 
 #upload:hover{
@@ -94,10 +95,11 @@ color: #02723B;
 border: 0.5px solid #02723B;
 padding: 10px;
 margin-right: 10px;
+transition: 0.5s;
 }
 
 #download:hover{
-background-color: #d1d1d1
+background-color: #d1d1d1;
 }
 
 .txtexcel:hover{
@@ -121,6 +123,11 @@ padding: 2px;
 border: none;
 border: 1px solid #02723B;
 border-radius: 4px;
+transition: 0.5s;
+}
+
+.btnexcel:hover{
+    background-color: #d1d1d1;
 }
 
 @media(max-width:1000px){

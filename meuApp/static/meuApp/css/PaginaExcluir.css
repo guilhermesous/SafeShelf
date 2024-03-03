@@ -21,9 +21,13 @@
     cursor: pointer;
     background-size: 300%;
     background-position: left;
-    transition: 1s background-position ease-in-out;
+    transition: 0.5s;
     color: white;
     margin-left: 15px;
+  }
+
+  .bntexcluir:hover{
+    background-color: #fd1818;
   }
   
   .bntcancelar{
@@ -37,7 +41,11 @@
     cursor: pointer;
     background-size: 300%;
     background-position: left;
-    transition: 1s background-position ease-in-out;
+    transition: 0.5s;
     border: 2px solid #FF3131;
     color: #FF3131;
+  }
+
+  .bntcancelar:hover{
+    background-color: #d1d1d1;
   }
