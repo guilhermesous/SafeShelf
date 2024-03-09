@@ -18,6 +18,15 @@ O SafeShelf foi construído com o principal próposito: Ajudar o público-alvo (
 - Responsivo: Adaptado a diversas telas de diferentes aparelhos eletrônicos
 - Contagem de dias restantes até o vencimento do produto e priorização dos produtos próximos ao vencimento
 
+## Ferramentas
+- Django FrameWork
+- MySQL (Workbench)
+- Bootstrap
+- AlertifyJS
+- DataTables
+- Font Awesome
+- etc...
+
 
 ## Rodando localmente
 
