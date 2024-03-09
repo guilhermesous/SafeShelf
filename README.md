@@ -72,7 +72,7 @@ Altere os campos 'user' e 'password' em meuProjeto/settings.py
 Instale as dependências
 
 ```bash
-  pip install django-admin
+  pip install django
   pip install mysqlclient
   pip install pandas
   pip install openpyxl
