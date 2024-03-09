@@ -21,6 +21,9 @@ O SafeShelf foi construído com o principal próposito: Ajudar o público-alvo (
 ## Ferramentas
 - Django FrameWork
 - MySQL (Workbench)
+- Pandas
+- openpyxl
+- Pillow
 - Bootstrap
 - AlertifyJS
 - DataTables
