@@ -6,7 +6,7 @@ O SafeShelf foi construído com o principal próposito: Ajudar o público-alvo (
 
 
 
-![Logo](meuApp/static/meuApp/imagens/Picsart_24-02-16_19-38-43-420.png)
+![Logo](meuApp/static/meuApp/imagens/Picsart_24-03-04_12-57-56-236.png)
 
 
 ## Funcionalidades
