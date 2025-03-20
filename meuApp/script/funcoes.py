@@ -9,7 +9,7 @@ def EmailProxVencimento(destinatario, assunto, descricao, validade):
     msg['Subject'] = f'{assunto}'
     msg['From'] = 'safeshelf.bot@gmail.com'
     msg['To'] = f'{destinatario}'
-    password = 'adlgdvwnkcebpnxe'
+    password = 'lljq ewgp mpxm qjiy'
     msg.add_header('Content-type', 'text/html')
     msg.set_payload(corpo_Email)
 
@@ -38,7 +38,7 @@ def EmailVencido(destinatario, assunto, descricao, validade):
     msg['Subject'] = f'{assunto}'
     msg['From'] = 'safeshelf.bot@gmail.com'
     msg['To'] = f'{destinatario}'
-    password = 'adlgdvwnkcebpnxe'
+    password = 'lljq ewgp mpxm qjiy'
     msg.add_header('Content-type', 'text/html')
     msg.set_payload(corpo_Email)
 

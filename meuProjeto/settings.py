@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'meuProjeto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'guilherme',
-        'PASSWORD': '789456',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'safeshelf'
     }
 }
 
@@ -144,4 +140,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'safeshelf.bot@gmail.com'
-EMAIL_HOST_PASSWORD = 'adlg dvwn kceb pnxe'
+EMAIL_HOST_PASSWORD = 'lljq ewgp mpxm qjiy'
